@@ -10,5 +10,8 @@ To run the sample locally from Visual Studio:
 - In the Package Manager Console window, enter the following command: `Update-Database`
 - Press F5 to debug.
 
+You can deploy the project to your Azure account.
+
+[![Deploy to Azure](http://azuredeploy.net/deploybutton.png)](https://azuredeploy.net/)
 
 
