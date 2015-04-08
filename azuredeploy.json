@@ -31,18 +31,67 @@
       ],
       "defaultValue": "0"
     },
+    "sqlServerName": {
+      "type": "string"
+    },
+    "sqlAdministratorLogin": {
+      "type": "string"
+    },
+    "sqlAdministratorPassword": {
+      "type": "securestring"
+    },
     "repoUrl": {
       "type": "string"
     },
-    "branch":{
+    "branch": {
       "type": "string"
     }
   },
   "resources": [
     {
-      "apiVersion": "2014-04-01",
+      "name": "[parameters('sqlServerName')]",
+      "type": "Microsoft.Sql/servers",
+      "location": "[parameters('siteLocation')]",
+      "apiVersion": "2.0",
+      "properties": {
+        "administratorLogin": "[parameters('sqlAdministratorLogin')]",
+        "administratorLoginPassword": "[parameters('sqlAdministratorPassword')]"
+      },
+      "resources": [
+        {
+          "name": "[parameters('siteName')]",
+          "type": "databases",
+          "location": "[parameters('siteLocation')]",
+          "apiVersion": "2.0",
+          "dependsOn": [
+            "[concat('Microsoft.Sql/servers/', parameters('sqlServerName'))]"
+          ],
+          "properties": {
+            "edition": "Web",
+            "collation": "SQL_Latin1_General_CP1_CI_AS",
+            "maxSizeBytes": "1073741824",
+            "requestedServiceObjectiveId": "910b4fcb-8a29-4c3e-958f-f7ba794388b2"
+          }
+        },
+        {
+          "apiVersion": "2.0",
+          "dependsOn": [
+            "[concat('Microsoft.Sql/servers/', parameters('sqlServerName'))]"
+          ],
+          "location": "[parameters('siteLocation')]",
+          "name": "AllowAllWindowsAzureIps",
+          "properties": {
+            "endIpAddress": "0.0.0.0",
+            "startIpAddress": "0.0.0.0"
+          },
+          "type": "firewallrules"
+        }
+      ]
+    },
+    {
+      "apiVersion": "2014-06-01",
       "name": "[parameters('hostingPlanName')]",
-      "type": "Microsoft.Web/serverfarms",
+      "type": "Microsoft.Web/serverFarms",
       "location": "[parameters('siteLocation')]",
       "properties": {
         "name": "[parameters('hostingPlanName')]",
@@ -52,13 +101,13 @@
       }
     },
     {
-      "apiVersion": "2014-04-01",
+      "apiVersion": "2014-06-01",
       "name": "[parameters('siteName')]",
-      "type": "Microsoft.Web/sites",
+      "type": "Microsoft.Web/Sites",
       "location": "[parameters('siteLocation')]",
-      "tags": {
-        "[concat('hidden-related:', resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]": "Resource"
-      },
+      "dependsOn": [
+        "[concat('Microsoft.Web/serverFarms/', parameters('hostingPlanName'))]"
+      ],
       "dependsOn": [
         "[resourceId('Microsoft.Web/serverfarms', parameters('hostingPlanName'))]"
       ],
@@ -69,12 +118,19 @@
       "resources": [
         {
           "apiVersion": "2014-04-01",
-          "name": "web",
           "type": "config",
+          "name": "web",
           "dependsOn": [
-            "[resourceId('Microsoft.Web/Sites', parameters('siteName'))]"
+            "[concat('Microsoft.Web/Sites/', parameters('siteName'))]"
           ],
           "properties": {
+            "connectionStrings": [
+              {
+                "ConnectionString": "[concat('Data Source=tcp:', reference(concat('Microsoft.Sql/servers/', parameters('sqlServerName'))).fullyQualifiedDomainName, ',1433;Initial Catalog=', parameters('siteName'), ';User Id=', parameters('sqlAdministratorLogin'), '@', parameters('sqlServerName'), ';Password=', parameters('sqlAdministratorPassword'), ';')]",
+                "Name": "BookServiceContext",
+                "Type": 2
+              }
+            ]
           }
         },
         {
