@@ -10,7 +10,7 @@ namespace BookService.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationsEnabled = false;
         }
 
         protected override void Seed(BookService.Models.BookServiceContext context)
