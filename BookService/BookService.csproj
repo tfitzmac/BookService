@@ -209,6 +209,7 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
+    <None Include="Properties\PublishProfiles\BookNewTom.pubxml" />
     <None Include="Properties\PublishProfiles\BookServiceDeploy.pubxml" />
     <None Include="Properties\PublishProfiles\BookServiceTomfitz.pubxml" />
     <None Include="Scripts\jquery-2.1.3.intellisense.js" />

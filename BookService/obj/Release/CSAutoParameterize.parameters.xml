@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="BookServiceContext-Web.config Connection String" description="BookServiceContext Connection String used in web.config by the application to access the database." defaultValue="Data Source=(localdb)\v11.0; Initial Catalog=BookServiceContext-20150407161716; Integrated Security=True; MultipleActiveResultSets=True; AttachDbFilename=|DataDirectory|BookServiceContext-20150407161716.mdf" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\tomfitz\\Documents\\Visual\ Studio\ 2013\\Projects\\BookService\\BookService\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='BookServiceContext']/@connectionString" />
+  </parameter>
+  <parameter name="BookServiceContext_DatabasePublish-Web.config Connection String" description="BookServiceContext_DatabasePublish Connection String used in web.config by the application to access the database." defaultValue="BookServiceContext_DatabasePublish.ConnetionString" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\tomfitz\\Documents\\Visual\ Studio\ 2013\\Projects\\BookService\\BookService\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='BookServiceContext_DatabasePublish']/@connectionString" />
+  </parameter>
+</parameters>
