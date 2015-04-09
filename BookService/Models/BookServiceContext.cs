@@ -17,7 +17,9 @@ namespace BookService.Models
     
         public BookServiceContext() : base("name=BookServiceContext")
         {
-            this.Database.Log = s => System.Diagnostics.Debug.WriteLine(s);
+            //this.Database.Log = s => System.Diagnostics.Debug.WriteLine(s);
+            Database.SetInitializer<BookServiceContext>(new CreateDatabaseIfNotExists<BookServiceContext>());
+            
         }
 
         public System.Data.Entity.DbSet<BookService.Models.Author> Authors { get; set; }
