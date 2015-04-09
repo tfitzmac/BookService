@@ -35,3 +35,4 @@ C:\Users\tomfitz\Documents\Visual Studio 2013\Projects\BookService\BookService\o
 C:\Users\tomfitz\Documents\Visual Studio 2013\Projects\BookService\BookService\obj\Debug\BookService.csproj.GenerateResource.Cache
 C:\Users\tomfitz\Documents\Visual Studio 2013\Projects\BookService\BookService\obj\Debug\BookService.dll
 C:\Users\tomfitz\Documents\Visual Studio 2013\Projects\BookService\BookService\obj\Debug\BookService.pdb
+C:\Users\tomfitz\Documents\Visual Studio 2013\Projects\BookService\BookService\obj\Debug\BookService.csprojResolveAssemblyReference.cache
