@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("BookService")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Microsoft Corp.")]
+[assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("BookService")]
-[assembly: AssemblyCopyright("Copyright © Microsoft Corp. 2014")]
+[assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("0c7d2aed-87b6-46e9-b373-8853c433190e")]
+[assembly: Guid("ba606e9e-bf60-436b-872a-340bca9c64a6")]
 
 // Version information for an assembly consists of the following four values:
 //
