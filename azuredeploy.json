@@ -52,29 +52,29 @@
       "name": "[parameters('sqlServerName')]",
       "type": "Microsoft.Sql/servers",
       "location": "[parameters('siteLocation')]",
-      "apiVersion": "2.0",
+      "apiVersion": "2014-04-01",
       "properties": {
         "administratorLogin": "[parameters('sqlAdministratorLogin')]",
-        "administratorLoginPassword": "[parameters('sqlAdministratorPassword')]"
+        "administratorLoginPassword": "[parameters('sqlAdministratorPassword')]",
+        "version": "12.0"
       },
       "resources": [
         {
           "name": "[parameters('siteName')]",
           "type": "databases",
           "location": "[parameters('siteLocation')]",
-          "apiVersion": "2.0",
+          "apiVersion": "2015-01-01",
           "dependsOn": [
             "[concat('Microsoft.Sql/servers/', parameters('sqlServerName'))]"
           ],
           "properties": {
-            "edition": "Web",
+            "edition": "Free",
             "collation": "SQL_Latin1_General_CP1_CI_AS",
-            "maxSizeBytes": "1073741824",
-            "requestedServiceObjectiveId": "910b4fcb-8a29-4c3e-958f-f7ba794388b2"
+            "requestedServiceObjectiveName": "Free"
           }
         },
         {
-          "apiVersion": "2.0",
+          "apiVersion": "2014-04-01",
           "dependsOn": [
             "[concat('Microsoft.Sql/servers/', parameters('sqlServerName'))]"
           ],
